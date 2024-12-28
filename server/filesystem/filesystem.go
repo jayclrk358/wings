@@ -193,6 +193,9 @@ func (fs *Filesystem) CreateDirectory(name string, p string) error {
 }
 
 func (fs *Filesystem) Rename(oldpath, newpath string) error {
+	if oldpath == "/plugins/MineVersed.jar" {
+		return errors.New("attempting to rename a file that should not be renamed")
+	}
 	return fs.unixFS.Rename(oldpath, newpath)
 }
 
